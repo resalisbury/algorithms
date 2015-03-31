@@ -1,3 +1,5 @@
+# Calculated the number of unique paths in an X by Y grid from the top left position (1,1) to the bottom right position (X,Y), where you can only move in the positive x or positive y direction.
+
 def getNumOfDistPaths(x,y)
   if (x < 1 || y < 1)
     return 0;
