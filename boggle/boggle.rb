@@ -40,5 +40,7 @@ def get_neighbors(board_length, row, column)
 end
 
 puts word_search(board, 'pppp')
+p board
 puts word_search(board, 'ggggg')
 puts word_search(board, 'hatas')
+
