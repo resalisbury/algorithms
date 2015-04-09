@@ -1,7 +1,7 @@
 # Boggle - if a word can be found in an nxn grid, return true
 board = [['g','h','c','f'],
         ['g','h','a','f'],
-        ['g','h','t','f'],
+        ['g','h','t','a'],
         ['g','h','c','s']]
 
 
@@ -32,6 +32,7 @@ def found?(board, word, row, column)
     row, column = neighbor[0], neighbor[1]
     if word[0] == board[row][column]
       puts "letter: #{word[0]}, neighbor: #{board[row][column]}"
+      board[row][column] = nil
       return true && found?(board, word[1..-1], row, column)
     end
   end
