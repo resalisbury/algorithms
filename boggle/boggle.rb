@@ -8,21 +8,20 @@ def word_search(board, word)
   length = board.length
   length.times do |row|
     length.times do |column|
-      return true if word[0] == board[row][column] && found?(board, word[1..-1], row, column)
+      return true if found?(board, word, row, column)
     end
   end
   return false
 end
 
 def found?(board, word, row, column)
+  return false if word[0] != board[row][column]
   return true if word.length == 0
   board[row][column] = nil # mark as visited
   neighbors = get_neighbors(board.length, row, column)
   neighbors.each do |neighbor|
     row, column = neighbor[0], neighbor[1]
-    if word[0] == board[row][column]
-      return true && found?(board, word[1..-1], row, column)
-    end
+    return true && found?(board, word[1..-1], row, column) if word[1] == board[row][column]
   end
   return false
 end
@@ -42,3 +41,4 @@ end
 
 puts word_search(board, 'pppp')
 puts word_search(board, 'ggggg')
+puts word_search(board, 'hatas')
