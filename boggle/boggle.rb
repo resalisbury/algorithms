@@ -1,42 +1,29 @@
 # Boggle - if a word can be found in an nxn grid, return true
-board = [['g','h','c','f'],
+board = [['p','p','p','p'],
         ['g','h','a','f'],
-        ['g','h','t','a'],
-        ['g','h','c','s']]
-
-
+        ['g','g','t','a'],
+        ['g','g','s','a']]
 
 def word_search(board, word)
   length = board.length
   length.times do |row|
     length.times do |column|
-     puts word[0] == board[row][column]
       return true if word[0] == board[row][column] && found?(board, word[1..-1], row, column)
     end
   end
-  puts "final false"
   return false
 end
 
-
-# return true or false
 def found?(board, word, row, column)
-  if word.length == 0
-    return true
-  end
-
+  return true if word.length == 0
+  board[row][column] = nil # mark as visited
   neighbors = get_neighbors(board.length, row, column)
-  puts "neighbors: #{neighbors}"
-
   neighbors.each do |neighbor|
     row, column = neighbor[0], neighbor[1]
     if word[0] == board[row][column]
-      puts "letter: #{word[0]}, neighbor: #{board[row][column]}"
-      board[row][column] = nil
       return true && found?(board, word[1..-1], row, column)
     end
   end
-  puts "flase w/in found?"
   return false
 end
 
@@ -53,6 +40,5 @@ def get_neighbors(board_length, row, column)
   neighbors
 end
 
-# p get_neighbors(4, 0, 0)
-
-puts word_search(board, 'cats')
+puts word_search(board, 'pppp')
+puts word_search(board, 'ggggg')
